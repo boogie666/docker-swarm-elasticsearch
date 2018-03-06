@@ -1,7 +1,9 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch:5.4.0
+FROM boogie666/elasticsearch:2.4.6 
 
 USER root
 
-RUN yum install -y bind-utils
+RUN apt-get update
+RUN apt-get install -y dnsutils
 COPY es-docker /usr/share/elasticsearch/bin/
 USER elasticsearch
+CMD ["es-docker"]

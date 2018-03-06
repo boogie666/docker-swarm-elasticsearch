@@ -44,19 +44,19 @@ done
 
 if [ -n "${MY_IP}" ];then
     echo "Setting network.publish_host=${MY_IP}"
-    es_opt="-Enetwork.publish_host=${MY_IP}"
+    es_opt="--network.publish_host=${MY_IP}"
     es_opts+=" ${es_opt}"
-    echo "Setting network.host=0.0.0.0"
-    es_opt="-Enetwork.host=0.0.0.0"
+    echo "Setting network.host=${MY_IP}"
+    es_opt="--network.host=${MY_IP}"
     es_opts+=" ${es_opt}"
     echo "Setting network.bind_host=0.0.0.0"
-    es_opt="-Enetwork.bind_host=0.0.0.0"
+    es_opt="--network.bind_host=0.0.0.0"
     es_opts+=" ${es_opt}"
 fi
 
 if [ -n "$OTHER_NODES" ];then
     echo "Setting discovery.zen.ping.unicast.hosts=${OTHER_NODES%,}"
-    es_opt="-Ediscovery.zen.ping.unicast.hosts=${OTHER_NODES%,}"
+    es_opt="--discovery.zen.ping.unicast.hosts=${OTHER_NODES%,}"
     es_opts+=" ${es_opt}"
 else
     echo "There is no another nodes in cluster. I am alone!"
